@@ -1,0 +1,71 @@
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    /* padding: 10px; */
+    gap: 10px;
+}
+
+.register h2 {
+    margin: 10px;
+}
+
+.form-group {
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    /* justify-items: center; */
+}
+
+@media only screen and (max-width: 768px) {
+    .form-group {
+        grid-template-columns: 1fr; /* Set a single column for small screens */
+        align-items: flex-start; /* Optional: Align content at the top within the column */
+        gap: 5px;
+        width: 80%;
+    }
+}
+
+.register input {
+    width: 100%; /* Make inputs take up full width */
+    padding: 10px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Add some rounded corners */
+    box-sizing: border-box; /* Include padding within width calculation */
+    font-size: 16px; /* Match font size with button */
+}
+
+.register input:focus {
+    outline: none; /* Remove default outline on focus */
+    border-color: #4caf50; /* Change border color to match button on focus */
+}
+
+.registerButton {
+    background-color: #4caf50; /* Green color */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px; /* Add some rounded corners */
+    transition: 0.3s ease all; /* Add a smooth hover effect */
+}
+
+.registerButton:hover {
+    background-color: #45a049; /* Darker green on hover */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
+}
+
+.error {
+    color: red;
+    font-size: 0.8rem;
+}
