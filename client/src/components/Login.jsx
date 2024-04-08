@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import QRCode from "qrcode";
+
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [isAdmin, setIsAdmin] = useState(false); // Default to not admin
     const [errors, setErrors] = useState({});
+
+    const [qrcode, setQrcode] = useState("");
 
     const handleChange = (event) => {
         const { name, value, type } = event.target;
@@ -46,8 +50,25 @@ export default function Login() {
         }
     };
 
+    async function qrcodeGenerate() {
+        const jsonData = { message: "Hello, world!", data: { key: "value" } };
+        const qrCodeString = await QRCode.toDataURL(JSON.stringify(jsonData));
+
+        setQrcode(qrCodeString);
+    }
+
     return (
         <form onSubmit={handleSubmit} className="login">
+            <button
+                type="button"
+                className="loginButton"
+                onClick={qrcodeGenerate}
+            >
+                QRCode generate
+            </button>
+
+            <div>{qrcode !== "" && <img src={qrcode} alt="QR Code" />}</div>
+
             <h2>Login</h2>
             <div className="form-group">
                 <label htmlFor="username">Username:</label>

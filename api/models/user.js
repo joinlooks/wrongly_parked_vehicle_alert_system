@@ -5,6 +5,10 @@ const UserSchema = new mongoose.Schema(
         username: { type: String, required: true, unique: true },
         phone: { type: String, required: true, unique: true },
         password: { type: String, required: true },
+
+        // At the time of registration qrcode string will be generated
+        qrcode: { type: String, required: true },
+
         isAdmin: {
             type: Boolean,
             default: false,
