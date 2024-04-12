@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema(
         password: { type: String, required: true },
 
         // At the time of registration qrcode string will be generated
-        qrcode: { type: String, required: true },
+        qrcode: { type: String },
 
         isAdmin: {
             type: Boolean,

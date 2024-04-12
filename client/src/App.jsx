@@ -1,13 +1,18 @@
 import "./App.css";
-import Login from "./components/Login";
-import Register from "./components/Register";
+// import AdminDashboard from "./components/AdminDashboard";
+import LoginPage from "./components/LoginPage";
+import RegisterPage from "./components/RegisterPage";
+import UserDashboard from "./components/UserDashboard";
 
 export default function App() {
     return (
         <div className="App">
-            {/* <h1>My App</h1> */}
-            {/* <Register /> */}
-            <Login />
+            <RegisterPage />
+            {/* <LoginPage /> */}
+            {/* <UserDashboard /> */}
+            {/* <div>hello</div> */}
+
+            {/* <AdminDashboard /> */}
         </div>
     );
 }

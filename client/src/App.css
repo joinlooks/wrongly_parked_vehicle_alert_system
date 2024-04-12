@@ -1,12 +1,11 @@
 .App {
-    min-height: 100vh; /* Set minimum height to 100vh */
-    display: flex; /* Enable flexbox for vertical centering */
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally (optional) */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .App.content-overflow {
-    /* New class for overflowing content */
-    min-height: auto; /* Allow content to define height */
+    min-height: auto;
 }

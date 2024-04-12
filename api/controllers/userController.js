@@ -2,6 +2,12 @@ const User = require("../models/user"); // Assuming User model is defined in 'us
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
+async function qrcodeGenerate(data) {
+    const jsonData = { data };
+    const qrCodeString = await QRCode.toDataURL(JSON.stringify(jsonData));
+    return qrCodeString;
+}
+
 // Register a new user
 exports.registerUser = async (req, res) => {
     try {
@@ -9,14 +15,17 @@ exports.registerUser = async (req, res) => {
         // Check if user already exists
         let existingUser = await User.findOne({ phone });
         if (existingUser) {
-            return res.status(400).json({ message: "User already exists" });
+            return res.status(400).json({
+                message: "User already exists with this phone number",
+            });
         }
         let existingUsername = await User.findOne({ username });
         if (existingUsername) {
             return res.status(400).json({ message: "Username already exists" });
         }
+
         // Create new user
-        const newUser = new User({
+        let newUser = new User({
             username,
             phone,
             isAdmin,
@@ -25,7 +34,14 @@ exports.registerUser = async (req, res) => {
                 process.env.PASS_SEC
             ).toString(),
         });
+
         await newUser.save();
+
+        // Here, qrcode associated with the user will be generated and stored
+        newUser = await User.findOne({ username });
+        newUser.qrcode = qrcodeGenerate({ username, phone });
+        await newUser.save();
+
         return res
             .status(201)
             .json({ message: "User registered successfully" });
